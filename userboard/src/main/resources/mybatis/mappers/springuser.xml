@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springuser">
+<!-- 아이디 중복 검사를 위한 SQL -->
+<select id="idcheck"
+resultType="java.lang.String"
+parameterType="java.lang.String">
+	select email
+	from springuser
+	where email = #{email}
+</select>
+<!-- 회원가입을 위한 SQL 파라미터 타입은 아래 값을 하나로묶을 수 있는 것. -->
+<insert id ="register"
+parameterType="User">
+insert into springuser(email, pw, nickname, image) values(#{email}, #{pw}, #{nickname}, #{image})
+</insert>
+
+<!-- 로그인 처리를 위한 SQL - 비밀번호가 암호화 되어 있어서 Service에서 비교해야 함다.
+1. 입력받는 것: email
+2. 돌려주는 것: email, pw, nickname, image-->
+<select id="login"
+resultType="User"
+parameterType="java.lang.String">
+select email, pw, nickname, image from springuser where email=#{email}
+</select>
+
+</mapper>
