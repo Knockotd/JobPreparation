@@ -41,7 +41,7 @@ content='width=device, initial-scale=1, maximum-scale=1, user-scalable=no' name=
                  <li role="presentation"><a href="#">목록보기</a></li>
                  <li role="presentation"><a href="#">로그인</a></li>
                  <li role="presentation"><a href="#">회원정보수정</a></li>
-                 <li role="presentation"><a href="#">회원가입</a></li>
+                 <li role="presentation"><a href="${pageContext.request.contextPath}/peoples/register">회원가입</a></li>
                  <li role="presentation"><a href="#">회원탈퇴</a></li>
                  <li role="presentation"><a href="#">내가 쓴 글</a></li>
                  <li role="presentation"><a href="#">보도자료</a></li>
