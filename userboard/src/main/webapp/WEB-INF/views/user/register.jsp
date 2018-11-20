@@ -139,6 +139,7 @@
 			alert("비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다."); 
 			return false; 
 		} 
+		
 	}
 </script>
 <%@include file="../include/footer.jsp"%>

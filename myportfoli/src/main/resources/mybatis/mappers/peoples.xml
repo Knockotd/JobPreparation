@@ -2,6 +2,32 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="springuser">
+<mapper namespace="peoples">
+<!-- 아이디 중복 검사를 위한 SQL -->
+<select id="idcheck"
+resultType="java.lang.String"
+parameterType="java.lang.String">
+     select pid
+     from peoples
+     where pid = #{pid}
+</select>
+<!-- 회원가입을 위한 SQL 파라미터 타입은 아래 값을 하나로묶을 수 있는 것. -->
+<insert id ="register"
+parameterType="Peoples">
+insert into peoples(pid, ppw, pnick, pimage, updatedate) values(#{pid}, #{ppw}, #{pnick}, #{pimage}, now())
+</insert>
+<select id="login"
+resultType="Peoples"
+parameterType="java.lang.String">
+select pid, ppw, pnick
+from peoples
+where pid = #{pid}
+</select>
+<!-- 회원가입 가능여부를 확인 -->
+<select id="">
 
+select pid
+from peopls
+
+</select>
 </mapper>

@@ -21,7 +21,7 @@ content='width=device, initial-scale=1, maximum-scale=1, user-scalable=no' name=
 </head>
 <!-- jQuery 링크 설 -->
 <!-- jQuery 2.1.4 -->
-<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery/jquery.js"></script>
 
 <!-- 기본화면 설정 -->
 <body class="skin-blue sidebar-mini">
@@ -39,7 +39,7 @@ content='width=device, initial-scale=1, maximum-scale=1, user-scalable=no' name=
              <ul class="nav nav-tabs">
                  <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/views/home.jsp">Home</a></li> <!-- active는 처음이 이게 선택되어 있도록 하는 설정이다. -->
                  <li role="presentation"><a href="#">목록보기</a></li>
-                 <li role="presentation"><a href="#">로그인</a></li>
+                 <li role="presentation"><a href="${pageContext.request.contextPath}/peoples/login">로그인</a></li>
                  <li role="presentation"><a href="#">회원정보수정</a></li>
                  <li role="presentation"><a href="${pageContext.request.contextPath}/peoples/register">회원가입</a></li>
                  <li role="presentation"><a href="#">회원탈퇴</a></li>
