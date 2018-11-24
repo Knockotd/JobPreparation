@@ -20,6 +20,7 @@ public class JsonController {
 	@Autowired
 	private PeoplesService peoplesService;
 	
+	//아이디 체크 데이터 가져오기
 	@RequestMapping(value="peoples/idcheck", method=RequestMethod.GET)
 	public Map<String, Object> idcheck(@RequestParam("pid") String pid, @RequestParam("togle") boolean togle, Model model){
 		
@@ -43,29 +44,6 @@ public class JsonController {
 		
 		return map;
 		
-	}
-	
-	@RequestMapping(value="peoples/registercheck", method=RequestMethod.POST)
-	public Map<String, Object> registercheck(HttpServletRequest request, Model model){
-		
-		Map<String, Object> map = new HashMap<>();
-		
-		//서버에서 온 값을 받기
-		
-		//맵에 저장
-		
-		
-		return map;
-	}
-	
-	@RequestMapping(value="peoples/pwlength", method=RequestMethod.GET)
-	public Map<String, Object> stringlength(@RequestParam("pw") String pw){
-		Map<String, Object> map = new HashMap<>();
-		System.out.println(pw);
-		int pwlength = pw.getBytes().length;
-		map.put("pwlength",pwlength );
-		
-		return map;
 	}
 
 }
