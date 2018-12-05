@@ -117,10 +117,9 @@ public class ParsingDataServiceImpl implements ParsingDataService {
 
 	
 	}
+	//전체데이터 가져오기
 	@Override
 	public List<Mfds> alldata() {
-		// TODO Auto-generated method stub
-		
 		return mfdsDao.alldata();
 	}
 	@Override

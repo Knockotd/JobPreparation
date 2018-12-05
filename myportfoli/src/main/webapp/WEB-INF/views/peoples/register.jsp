@@ -21,14 +21,14 @@
 				<tr>
 					<td bgcolor="#f5f5f5"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;이메일</font></td>
 					<td>&nbsp;&nbsp;&nbsp; <input type="email" name="email"
-						id="email" size="30" maxlength=50 required="required" />
+						id="email" size="30" maxlength=50 required="required" onblur="confirmId()"/>
 						<div id="emailDiv"></div>
 					</td>
 				</tr>
 				<tr>
 					<td bgcolor="#f5f5f5"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호</font></td>
 					<td>&nbsp;&nbsp;&nbsp; <input type="password" name="pw"
-						id="pw" size="20" onblur="confirmId()" required="required" />
+						id="pw" size="20" required="required" />
 					</td>
 				</tr>
 				<tr>
@@ -41,9 +41,10 @@
 				</tr>
 				<tr>
 					<td width="17%" bgcolor="#f5f5f5"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;이름</font></td>
-					<td>&nbsp;&nbsp;&nbsp; <input type="text" name="nickname"
+					<td>&nbsp;&nbsp;&nbsp; <input type="text" name="nickname" id="nickname"
 						size="20" pattern="([a-z, A-Z, 가-힣]){2,}" required="required"
-						title="닉네임은 문자 2자 이상입니다." />
+						title="닉네임은 문자 2자 이상입니다." onblur="confirmId()"/>
+						<div id="nicknameDiv"></div>
 					</td>
 				</tr>
 				<tr>
@@ -99,30 +100,51 @@
 </script>
 <!-- 아이디 중복체크 -->
 <script>
-	//아이디 중복 검사 여부를 저장할 변수(Bool)
+	//아이디 중복 검사 여부를 저장할 변수(Bool) + ||가 들어가면 실행되지 않게 하는 코드를 추가 + 닉네임 중복 검사 실행
 	//작성한 아이디가 데이터베이스에 있으면 false를 반환한다.
 	var idcheck = false;
 	function confirmId() {
 		//이렇게 작성하면 peoples/idcheck의 주소를 요청할 것이다.
 		var addr = "idcheck";
 		var pid = document.getElementById("email").value;
+		var pnick = document.getElementById("nickname").value;
 		var togle = false;
 		$.ajax({
 					url : addr,
 					data : {
 						'pid' : pid,
-						'togle' : togle
+						//'togle' : togle
+						'pnick' : pnick
 					},
 					dataType : "json",
 					success : function(map) {
-						if (map.result == true && map.togle == false) {
+						//result가 idFalse면 아이디중복
+						//result가 nickFalse면 닉네임중복
+						//result가 true이면 통과
+						if (map.result == "true" && map.oR == "true") {
 							document.getElementById("emailDiv").innerHTML = "사용 가능한 아이디";
 							document.getElementById("emailDiv").style.color = 'blue';
 							idcheck = true;
-						} else {
+						} else if(map.result == "idFalse" || map.oR == "false"){
 							document.getElementById("emailDiv").innerHTML = "사용 불가능한 아이디";
 							document.getElementById("emailDiv").style.color = 'red';
 							idcheck = false;
+						} else{
+							idcheck = true;
+						}
+						if(map.result == false){
+							document.getElementById("nicknameDiv").innerHTML = "아이디 중복체크를 먼저 해주세요."
+							document.getElementById("nicknameDiv").style.color = 'red';
+						}else{
+							if(map.result == "true" && pnick.length > 0){
+							document.getElementById("nicknameDiv").innerHTML = "사용 가능한 이름"
+							document.getElementById("nicknameDiv").style.color = 'blue';
+							idcheck = true;
+							} else if(map.result == "nickFalse"){
+							document.getElementById("nicknameDiv").innerHTML = "사용 불가능한 이름";
+							document.getElementById("nicknameDiv").style.color = 'red';
+							idcheck = false;
+							}
 						}
 					}
 				});

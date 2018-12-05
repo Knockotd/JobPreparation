@@ -15,7 +15,7 @@
 			name="driverClassName" />
 		<!-- 데이터베이스 주소 -->
 		<property
-			value="jdbc:mysql://localhost:3306/mysql?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;"
+			value="jdbc:mysql://localhost:3306/food?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;"
 			name="url" />
 		<!-- 아이디와 비밀번호 -->
 		<property value="root" name="username" />

@@ -1,5 +1,6 @@
 package com.gmail.aisdugo.vo;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Peoples {
@@ -9,7 +10,9 @@ public class Peoples {
 	private String pimage;
 	private Date updatedate;
 	private Date logindate;
+	private byte [] byteimage;
 	
+
 	public String getPid() {
 		return pid;
 	}
@@ -46,10 +49,17 @@ public class Peoples {
 	public void setLogindate(Date logindate) {
 		this.logindate = logindate;
 	}
+	public byte[] getByteimage() {
+		return byteimage;
+	}
+	public void setByteimage(byte[] byteimage) {
+		this.byteimage = byteimage;
+	}
 	@Override
 	public String toString() {
 		return "Peoples [pid=" + pid + ", ppw=" + ppw + ", pnick=" + pnick + ", pimage=" + pimage + ", updatedate="
-				+ updatedate + ", logindate=" + logindate + "]";
-	}	
+				+ updatedate + ", logindate=" + logindate + ", byteimage=" + Arrays.toString(byteimage) + "]";
+	}
+	
 
 }
